@@ -19,6 +19,7 @@ from langchain.docstore.document import Document
 import os
 from dotenv import load_dotenv
 from pypdf import PdfReader
+
 class Services:
     def __init__(self):
         load_dotenv()

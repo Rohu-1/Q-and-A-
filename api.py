@@ -7,7 +7,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-
+import os
+port = int(os.environ.get("PORT", 10000))
+# Update your run statement
+app.run(host='0.0.0.0', port=port)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Update to specify your frontend URL for better security
