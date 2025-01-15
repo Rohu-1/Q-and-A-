@@ -3,14 +3,11 @@ from main import Services
 from pydantic import BaseModel
 
 from fastapi.middleware.cors import CORSMiddleware
-
+import os
 
 app = FastAPI()
 
-import os
-port = int(os.environ.get("PORT", 10000))
-# Update your run statement
-app.run(host='0.0.0.0', port=port)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Update to specify your frontend URL for better security
@@ -73,3 +70,7 @@ def query_documents(query:UserQuery1):
 #     obj=Services()
 #     result = obj.execute_python_code(request.code)
 #     return {"result": result}
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
